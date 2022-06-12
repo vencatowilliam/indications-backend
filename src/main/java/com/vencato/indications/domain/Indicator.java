@@ -1,23 +1,28 @@
 package com.vencato.indications.domain;
 
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import com.vencato.indications.domain.enums.DocumentType;
+import com.vencato.indications.domain.enums.Profile;
 
-public class Indicator extends User{
+@Entity
+public class Indicator extends User {
+	private static final long serialVersionUID = 1L;
 
+	@OneToMany(mappedBy = "indicator")
 	private List<Indication> indications;
 
 	public Indicator() {
 		super();
-		// TODO Auto-generated constructor stub
+		addProfile(Profile.INDICATOR);
 	}
-
-	public Indicator(Integer iD, String description, Set<DocumentType> documentType, String document, String email,
-			Integer dDD, Integer phone) {
-		super(iD, description, documentType, document, email, dDD, phone);
-		// TODO Auto-generated constructor stub
+	public Indicator(Integer id, String description, DocumentType documentType, String document, String email,
+			Integer ddd, Integer phone) {
+		super(id, description, documentType, document, email, ddd, phone);
+		addProfile(Profile.INDICATOR);
 	}
 
 	public List<Indication> getIndications() {

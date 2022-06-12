@@ -2,22 +2,36 @@ package com.vencato.indications.domain.enums;
 
 public enum Profile {
 
-	INDICATED, INDICATOR, PRODUCER;
+	//INDICATED, INDICATOR, PRODUCER;
 
-	//INDICATOR(0, "ROLE_INDICATOR"), PRODUCER(1, "ROLE_PRODUCER");
+	INDICATOR(0, "INDICATOR"), PRODUCER(1, "PRODUCER");
 
-	//private Integer codigo;
-	//private String descricao;
+	private Integer id;
+	private String description;
 
-	//private CurrentVision(Integer codigo, String descricao) {
-	//	this.codigo = codigo;
-	//	this.descricao = descricao;
-	//}
+	private Profile(Integer id, String description) {
+		this.id = id;
+		this.description = description;
+	}
 
-	//public Integer getCodigo() {
-	//	return codigo;
-	//}
-	//public String getDescricao() {
-	//	return descricao;
-	//}	
+	public Integer getId() {
+		return id;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public static Profile toEnum(Integer id) {
+		if(id == null) {
+			return null;
+		}
+
+		for(Profile x : Profile.values()) {
+			if(id.equals(x.getId())) {
+				return x;
+			}
+		}
+
+		throw new IllegalArgumentException("Perfil inválido!");
+	}
 }

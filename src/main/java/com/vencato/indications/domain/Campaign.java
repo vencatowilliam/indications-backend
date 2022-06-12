@@ -1,15 +1,45 @@
 package com.vencato.indications.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Campaign {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-	private Integer ID;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+public class Campaign implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	private String description;
+
+	@ManyToOne
+	@JoinColumn(name = "producer_id")
 	private Producer producer;
+
+	@OneToOne
+	@JoinColumn(name = "indication_id")
+	private Indication indication;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate creationDate = LocalDate.now();
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate starts;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate ends;
+
 	private String observations;
 	
 	public Campaign() {
@@ -17,10 +47,10 @@ public class Campaign {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Campaign(Integer iD, String description, Producer producer, LocalDate starts, LocalDate ends,
+	public Campaign(Integer id, String description, Producer producer, LocalDate starts, LocalDate ends,
 			String observations) {
 		super();
-		ID = iD;
+		this.id = id;
 		this.description = description;
 		this.producer = producer;
 		this.starts = starts;
@@ -28,11 +58,11 @@ public class Campaign {
 		this.observations = observations;
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setID(Integer id) {
+		this.id = id;
 	}
 
 	public String getDescription() {
