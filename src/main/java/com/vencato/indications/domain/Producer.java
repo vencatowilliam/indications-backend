@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vencato.indications.domain.enums.DocumentType;
 import com.vencato.indications.domain.enums.Profile;
 
@@ -12,12 +13,15 @@ import com.vencato.indications.domain.enums.Profile;
 public class Producer extends User{
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "producer")
 	private List<Indication> indications;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "producer")
 	private List<Campaign> campaigns;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "producer")
 	private List<Sale> sales;
 
