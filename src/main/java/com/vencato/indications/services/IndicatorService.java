@@ -1,5 +1,6 @@
 package com.vencato.indications.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class IndicatorService {
 	public Indicator findById(Integer id) {
 		Optional<Indicator> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado!"));
+	}
+
+	public List<Indicator> findAll() {
+		return repository.findAll();
 	}
 }

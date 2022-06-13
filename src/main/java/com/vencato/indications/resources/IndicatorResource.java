@@ -1,5 +1,8 @@
 package com.vencato.indications.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +27,12 @@ public class IndicatorResource {
 	public ResponseEntity<IndicatorDTO> findById(@PathVariable Integer id) {
 		Indicator obj = this.service.findById(id);
 		return ResponseEntity.ok().body(new IndicatorDTO(obj));
+	}
+
+	@GetMapping
+	public ResponseEntity<List<IndicatorDTO>> findAll() {
+		List<Indicator> list = service.findAll();
+		List<IndicatorDTO> listDTO = list.stream().map(obj -> new IndicatorDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 }
