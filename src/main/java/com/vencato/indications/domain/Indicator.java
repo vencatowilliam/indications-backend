@@ -1,6 +1,7 @@
 package com.vencato.indications.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -8,6 +9,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vencato.indications.domain.enums.DocumentType;
 import com.vencato.indications.domain.enums.Profile;
+import com.vencato.indications.dtos.IndicatorDTO;
 
 @Entity
 public class Indicator extends User {
@@ -25,6 +27,19 @@ public class Indicator extends User {
 			Integer ddd, Integer phone) {
 		super(id, description, documentType, document, email, ddd, phone);
 		addProfile(Profile.INDICATOR);
+	}
+
+	public Indicator(IndicatorDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.description = obj.getDescription();
+		this.profiles = obj.getProfiles().stream().map(x -> x.getId()).collect(Collectors.toSet());
+		this.documentType = obj.getDocumentType();
+		this.document = obj.getDocument();
+		this.email = obj.getEmail();
+		DDD = obj.getDDD();
+		this.phone = obj.getPhone();
+		this.creationDate = obj.getCreationDate();
 	}
 
 	public List<Indication> getIndications() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vencato.indications.domain.Indicator;
+import com.vencato.indications.dtos.IndicatorDTO;
 import com.vencato.indications.repositories.IndicatorRepository;
 import com.vencato.indications.services.exceptions.ObjectNotFoundException;
 
@@ -23,5 +24,11 @@ public class IndicatorService {
 
 	public List<Indicator> findAll() {
 		return repository.findAll();
+	}
+
+	public Indicator create(IndicatorDTO objDTO) {
+		objDTO.setId(null);
+		Indicator newObj = new Indicator(objDTO);
+		return repository.save(newObj);
 	}
 }

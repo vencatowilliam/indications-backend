@@ -28,6 +28,7 @@ public class IndicatorDTO implements Serializable{
 
 	public IndicatorDTO() {
 		super();
+		addProfiles(Profile.INDICATOR);
 	}
 
 	public IndicatorDTO(Indicator obj) {
@@ -41,6 +42,7 @@ public class IndicatorDTO implements Serializable{
 		DDD = obj.getDDD();
 		this.phone = obj.getPhone();
 		this.creationDate = obj.getCreationDate();
+		addProfiles(Profile.INDICATOR);
 	}
 
 	public Integer getId() {
