@@ -37,15 +37,25 @@ public class DBService {
 				LocalDate.parse("01-06-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy")),
 				LocalDate.parse("31-12-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy")), "Nova campanha semestral.");
 
-		Indicator indicator1 = new Indicator(null, "William Pinheiro", DocumentType.CPF, "99283835026", "wv@terra.com.br",
-				51, 981932743);
+		Indicator indicator1 = new Indicator(null, "William", DocumentType.CPF, "99283835026", "wv@terra.com.br",
+				51, 981932222);
+		Indicator indicator2 = new Indicator(null, "Rosane", DocumentType.CPF, "24652625057", "rp@terra.com.br",
+				51, 981934444);
+		Indicator indicator3 = new Indicator(null, "Gilson", DocumentType.CPF, "16176938040", "gl@terra.com.br",
+				51, 981935555);
 
-		Indication indication1 = new Indication(null, "Indicando Angélica Silva, telefone 51996957766", indicator1,
+		Indication indication1 = new Indication(null, "Indicando Angélica, telefone 51996955555", indicator1,
 				campaign1, producer1, null, "Ligar no final da tarde.");
+		Indication indication2 = new Indication(null, "Indicando Noeli, telefone 51996966666", indicator1,
+				campaign1, producer1, null, "Ligar pela manhã.");
+		Indication indication3 = new Indication(null, "Indicando Beti, telefone 51996977777", indicator2,
+				campaign1, producer1, null, "Ligar no final do mês de Agosto.");
+		Indication indication4 = new Indication(null, "Indicando Belamar, telefone 51996988888", indicator3,
+				campaign1, producer1, null, "Ligar o mais rápido possível.");
 
 		producerRepository.saveAll(Arrays.asList(producer1));
 		campaignRepository.saveAll(Arrays.asList(campaign1));
-		indicatorRepository.saveAll(Arrays.asList(indicator1));
-		indicationRepository.saveAll(Arrays.asList(indication1));
+		indicatorRepository.saveAll(Arrays.asList(indicator1,indicator2,indicator3));
+		indicationRepository.saveAll(Arrays.asList(indication1,indication2,indication3,indication4));
 	}
 }
