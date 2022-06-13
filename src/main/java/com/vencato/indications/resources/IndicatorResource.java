@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vencato.indications.domain.Indicator;
+import com.vencato.indications.dtos.IndicatorDTO;
 import com.vencato.indications.services.IndicatorService;
 
 @RestController
@@ -20,8 +21,8 @@ public class IndicatorResource {
 	private IndicatorService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Indicator> findById(@PathVariable Integer id) {
+	public ResponseEntity<IndicatorDTO> findById(@PathVariable Integer id) {
 		Indicator obj = this.service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new IndicatorDTO(obj));
 	}
 }

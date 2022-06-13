@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.vencato.indications.domain.Indicator;
 import com.vencato.indications.repositories.IndicatorRepository;
+import com.vencato.indications.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class IndicatorService {
@@ -16,6 +17,6 @@ public class IndicatorService {
 	
 	public Indicator findById(Integer id) {
 		Optional<Indicator> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado!"));
 	}
 }
