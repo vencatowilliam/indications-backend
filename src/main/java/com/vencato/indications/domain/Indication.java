@@ -54,12 +54,14 @@ public class Indication implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Indication(Integer id, String description, Indicator indicator, /*Campaign campaign,*/ LocalDate closingDate,
-			String observations) {
+	public Indication(Integer id, String description, Indicator indicator, Campaign campaign, Producer producer,
+			LocalDate closingDate, String observations) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.indicator = indicator;
+		this.campaign = campaign;
+		this.producer = producer;
 		this.closingDate = closingDate;
 		this.observations = observations;
 	}
