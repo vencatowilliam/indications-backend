@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.vencato.indications.domain.Campaign;
@@ -28,21 +29,23 @@ public class DBService {
 	private IndicatorRepository indicatorRepository;
 	@Autowired
 	private IndicationRepository indicationRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	public void dbInstantiate() {
 		Producer producer1 = new Producer(null, "AJ Corretora", DocumentType.CNPJ, "18992795000127", "aj@aj.com.br",
-				51, 998965544);
+				51, 998965544, encoder.encode("123"));
 
 		Campaign campaign1 = new Campaign(null, "Consorcios de imóvel 300k", producer1,
 				LocalDate.parse("01-06-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy")),
 				LocalDate.parse("31-12-2022", DateTimeFormatter.ofPattern("dd-MM-yyyy")), "Nova campanha semestral.");
 
 		Indicator indicator1 = new Indicator(null, "William", DocumentType.CPF, "99283835026", "wv@terra.com.br",
-				51, 981932222);
+				51, 981932222, encoder.encode("123"));
 		Indicator indicator2 = new Indicator(null, "Rosane", DocumentType.CPF, "24652625057", "rp@terra.com.br",
-				51, 981934444);
+				51, 981934444, encoder.encode("123"));
 		Indicator indicator3 = new Indicator(null, "Gilson", DocumentType.CPF, "16176938040", "gl@terra.com.br",
-				51, 981935555);
+				51, 981935555, encoder.encode("123"));
 
 		Indication indication1 = new Indication(null, "Indicando Angélica, telefone 51996955555", indicator1,
 				campaign1, producer1, null, "Ligar no final da tarde.");

@@ -26,6 +26,8 @@ public class IndicatorDTO implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
+	protected String password;
+
 	public IndicatorDTO() {
 		super();
 		addProfiles(Profile.INDICATOR);
@@ -106,5 +108,12 @@ public class IndicatorDTO implements Serializable{
 	}
 	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

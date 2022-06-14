@@ -48,12 +48,14 @@ public abstract class User implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
+	protected String password; 
+
 	public User() {
 		super();
 	}
 
 	public User(Integer id, String description, DocumentType documentType, String document, String email, Integer ddd,
-			Integer phone) {
+			Integer phone, String senha) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -62,6 +64,7 @@ public abstract class User implements Serializable {
 		this.email = email;
 		DDD = ddd;
 		this.phone = phone;
+		this.password = senha;
 	}
 
 
@@ -123,6 +126,13 @@ public abstract class User implements Serializable {
 
 	public LocalDate getCreationDate() {
 		return creationDate;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

@@ -30,8 +30,8 @@ public class Producer extends User{
 		addProfile(Profile.PRODUCER);
 	}
 	public Producer(Integer id, String description, DocumentType documentType, String document, String email,
-			Integer ddd, Integer phone) {
-		super(id, description, documentType, document, email, ddd, phone);
+			Integer ddd, Integer phone, String password) {
+		super(id, description, documentType, document, email, ddd, phone, password);
 		addProfile(Profile.PRODUCER);
 	}
 
