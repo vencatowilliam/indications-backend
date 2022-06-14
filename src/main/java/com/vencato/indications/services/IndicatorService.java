@@ -3,6 +3,8 @@ package com.vencato.indications.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,28 @@ public class IndicatorService {
 		return repository.save(newObj);
 	}
 
+	public Indicator update(Integer id, @Valid IndicatorDTO objDTO) {
+		objDTO.setId(id);
+		Indicator oldObj = findById(id);
+		
+		if(!objDTO.getPassword().equals(oldObj.getPassword())) 
+			objDTO.setPassword(encoder.encode(objDTO.getPassword()));
+		
+		validateByDocAndEmail(objDTO);
+		oldObj = new Indicator(objDTO);
+		return repository.save(oldObj);
+	}
+
+	public void delete(Integer id) {
+		Indicator obj = findById(id);
+
+		//if (obj.getChamados().size() > 0) {
+		//	throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
+		//}
+
+		repository.deleteById(id);
+	}
+	
 	private void validateByDocAndEmail(IndicatorDTO objDTO) {
 		Optional<User> obj = userRepository.findByDocument(objDTO.getDocument());
 		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {
