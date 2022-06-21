@@ -40,6 +40,7 @@ public class Indicator extends User {
 		DDD = obj.getDDD();
 		this.phone = obj.getPhone();
 		this.creationDate = obj.getCreationDate();
+		this.password = obj.getPassword();
 	}
 
 	public List<Indication> getIndications() {

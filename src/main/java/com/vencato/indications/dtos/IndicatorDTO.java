@@ -45,6 +45,7 @@ public class IndicatorDTO implements Serializable{
 		this.phone = obj.getPhone();
 		this.creationDate = obj.getCreationDate();
 		addProfiles(Profile.INDICATOR);
+		this.password = obj.getPassword();
 	}
 
 	public Integer getId() {
